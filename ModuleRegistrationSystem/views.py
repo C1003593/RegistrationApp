@@ -1,21 +1,20 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def home(request):
 
-        return HttpResponse('<h1>Welcome to Sheffield Hallam University</h1>')
+        return render(request, 'ModuleRegistrationSystem/home.html')
 
 def about_us(request):
         
-        return HttpResponse('<h1>About the University</h1>')
+        return render(request, 'ModuleRegistrationSystem/about.html')
 
 def contact_us(request):
         
-        return HttpResponse('<h1>Where to contact us</h1>')
+        return render(request, 'ModuleRegistrationSystem/contact.html')
 
 def modules(request):
         
-        return HttpResponse('<h1>Modules on offer</h1>')
+        return render(request, 'ModuleRegistrationSystem/modules.html')
 
 
 # Create your views here.
