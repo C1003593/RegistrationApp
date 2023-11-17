@@ -1,13 +1,22 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import studentAccount
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(label = 'Email address', help_text = 'Your SHU email address.')
-    DOB = forms.DateField(label = 'Date of birth', help_text = 'Your date of birth.' )
-    Address = forms.CharField(label = 'Address')
-    City = forms.CharField(label = 'City')
-    Country = forms.CharField(label = 'Country')
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'DOB', 'Address', 'City', 'Country', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','email']
+    
+class studentAccountUpdateForm(forms.ModelForm):
+    class Meta:
+        model = studentAccount
+        fields = ['DOB', 'Address', 'City', 'Country','image']

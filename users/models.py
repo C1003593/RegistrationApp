@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 
 class studentAccount(models.Model):
     user = models.OneToOneField(User, null = True, on_delete= models.CASCADE)
+    DOB = models.DateField(null = True)
+    Address = models.CharField(max_length=30, null = True)
+    City = models.CharField(max_length=20, null = True)
+    Country = models.CharField(max_length=20, null = True)
     image = models.ImageField(default = 'default.png', upload_to= 'profile_pics')
 
     def __str__(self):
