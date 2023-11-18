@@ -30,7 +30,7 @@ def studentAccount(request):
         p_form.save()
         messages.success(request, 'Your account has been successfully updated')
         return redirect('studentAccount')
-    
+      
     else:
         u_form = UserUpdateForm(instance = request.user)
         p_form = studentAccountUpdateForm(instance = request.user.studentaccount)
