@@ -2,10 +2,16 @@
 {% block content %}
     <h1>The modules we offer</h1>
 {% for module in modules %}
-    <h3>{{ module }}</h3>
-    <h4>{{ module.credit }} credits offered, {{ module.category }}</h4>
-    <p>{{ module.description }}
-    <hr>
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+               
+                <small class="text-muted">{{ module.credit }} credits offered. </small>
+            </div>
+            <h2><a class="article-title" href="#">{{ module }}</a></h2>
+            <p class="article-content">{{ module.description }}</p>
+        </div>
+    </article>
 {% endfor %}
 
 {% endblock content %}
