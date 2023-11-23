@@ -21,4 +21,7 @@ class Registration(models.Model):
     module = models.ForeignKey(Module, null = True, related_name= 'module_registrations', on_delete = models.CASCADE)
     dateOfRegistration = models.DateTimeField(default = timezone.now)
 
+    def __str__(self):
+        return f'{self.student} registered to {self.module}'
+
 
