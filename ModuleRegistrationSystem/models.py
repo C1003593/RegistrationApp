@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
+
+
 
 class Module(models.Model):
     name = models.CharField(max_length= 20)
@@ -13,6 +16,9 @@ class Module(models.Model):
     def __str__(self):
         return f'{self.name}'
 
-#class Registration(models.Model):
+class Registration(models.Model):
+    student = models.ForeignKey(User,null = True, related_name= 'student_registrations', on_delete = models.CASCADE)
+    module = models.ForeignKey(Module, null = True, related_name= 'module_registrations', on_delete = models.CASCADE)
+    dateOfRegistration = models.DateTimeField(default = timezone.now)
 
 
