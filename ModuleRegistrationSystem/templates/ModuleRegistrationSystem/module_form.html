@@ -1,0 +1,22 @@
+{% extends "ModuleRegistrationSystem/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% if user.is_superuser %}
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Register new module</legend>
+            {{ form | crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Submit</button>
+        </div>
+    </form>
+{% else %}
+<div class="content-section">
+    <h1>You must be logged in as admin to do this!</h1>
+    <h2>Please return to homepage</h2>
+</div>
+{% endif %}
+{% endblock content %}

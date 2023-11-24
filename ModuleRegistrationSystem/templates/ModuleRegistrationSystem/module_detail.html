@@ -1,0 +1,25 @@
+{% extends "ModuleRegistrationSystem/base.html" %}
+{% block content %}
+    <h1>Specific module </h1>
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2">Courses allowed to register: {% for coursesAllowedToRegister in object.coursesAllowedToRegister.all %} <a class="mr-2" href="#"> {{ coursesAllowedToRegister }}. </a>
+                    {% endfor %}</a>
+                </br>
+                <small class="text-muted">{{ object.credit }} credits offered. Module Code: {{ object.code }}</small> 
+            </div>
+            <h2><a class="article-title">{{ object }}</a></h2>
+            <p class="article-content">{{ object.description }}</p></br>
+            <p class="article-content">In person or online: {{ object.category }}</p></br>
+            {% if object.availability == True %}
+                <p class="article-content">Module available at the moment: Yes</p>
+            {% else %}
+                <p class="article-content">Module available at the moment: No</p>
+            {% endif %}
+        </div>
+    </article>
+
+{% endblock content %}
+</body>
+</html>

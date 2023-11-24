@@ -10,7 +10,7 @@
                 </br>
                 <small class="text-muted">{{ module.credit }} credits offered. Module Code: {{ module.code }}</small> 
             </div>
-            <h2><a class="article-title" href="#">{{ module }}</a></h2>
+            <h2><a class="article-title" href="{% url 'ModuleRegistrationSystem:module-detail' module.code %}">{{ module }}</a></h2>
             <p class="article-content">{{ module.description }}</p>
         </div>
     </article>

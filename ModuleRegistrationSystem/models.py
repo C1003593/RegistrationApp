@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.urls import reverse
 
 class Course(models.Model):
     name = models.CharField(max_length = 20)
@@ -12,7 +13,7 @@ class Course(models.Model):
         return f'{self.name}'
 
 class Module(models.Model):
-    name = models.CharField(max_length= 20)
+    name = models.CharField(max_length= 40)
     code = models.CharField(max_length= 4, primary_key= 'code')
     credit = models.IntegerField(choices= [(20, 20), (40, 40), (60, 60)])
     category = models.CharField(max_length= 20, choices= [('In-person', 'In person'), ('Online', 'Online')])
@@ -22,6 +23,8 @@ class Module(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+    def get_absolute_url(self):
+        return reverse('ModuleRegistrationSystem:module-detail', kwargs = {'pk': self.pk})
     
 class Registration(models.Model):
     student = models.ForeignKey(User,null = True, related_name= 'studentregistrations', on_delete = models.CASCADE)
