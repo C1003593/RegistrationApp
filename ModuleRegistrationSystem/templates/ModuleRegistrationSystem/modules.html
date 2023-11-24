@@ -5,7 +5,8 @@
     <article class="media content-section">
         <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2">Courses allowed to register: {% for coursesAllowedToRegister in module.coursesAllowedToRegister.all %}{{ coursesAllowedToRegister }}. {% endfor %}</a>
+                <a class="mr-2">Courses allowed to register: {% for coursesAllowedToRegister in module.coursesAllowedToRegister.all %} <a class="mr-2" href="#"> {{ coursesAllowedToRegister }}. </a>
+                    {% endfor %}</a>
                 </br>
                 <small class="text-muted">{{ module.credit }} credits offered. Module Code: {{ module.code }}</small> 
             </div>
