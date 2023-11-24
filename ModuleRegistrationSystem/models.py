@@ -18,17 +18,11 @@ class Module(models.Model):
     category = models.CharField(max_length= 20, choices= [('In-person', 'In person'), ('Online', 'Online')])
     description = models.TextField()
     availability = models.BooleanField(default=True)
+    coursesAllowedToRegister = models.ManyToManyField(Course)
 
     def __str__(self):
         return f'{self.name}'
     
-class CourseModule(models.Model):
-    course = models.ForeignKey(Course, null = True, related_name= 'courseModules', on_delete = models.CASCADE)
-    module = models.ForeignKey(Module, null = True, related_name= 'moduleCourses', on_delete = models.CASCADE)
-
-    def __str__(self):
-        return f'{self.module} is offered by {self.course}'
-
 class Registration(models.Model):
     student = models.ForeignKey(User,null = True, related_name= 'studentregistrations', on_delete = models.CASCADE)
     module = models.ForeignKey(Module, null = True, related_name= 'moduleregistrations', on_delete = models.CASCADE)
@@ -37,9 +31,3 @@ class Registration(models.Model):
     def __str__(self):
         return f'{self.student} is registered to {self.module}'
 
-class courseStudent(models.Model):
-    student = models.ForeignKey(User,null = True, related_name= 'studentCourse', on_delete = models.CASCADE)
-    course = models.ForeignKey(Course, null = True, related_name= 'courseStudent', on_delete = models.CASCADE)
-
-    def __str__(self):
-        return f'{self.student} is registered on {self.course}'
