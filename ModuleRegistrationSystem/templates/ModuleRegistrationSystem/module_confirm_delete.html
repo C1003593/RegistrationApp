@@ -1,0 +1,37 @@
+{% extends "ModuleRegistrationSystem/base.html" %}
+{% block content %}
+{% if user.is_superuser %}
+<div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <article class="media content-section">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2">Courses allowed to register: {% for coursesAllowedToRegister in object.coursesAllowedToRegister.all %}{{ coursesAllowedToRegister }}.
+                            {% endfor %}</a>
+                        </br>
+                        <small class="text-muted">{{ object.credit }} credits offered. Module Code: {{ object.code }}</small> 
+                    </div>
+                    <h2><a class="article-title">{{ object }}</a></h2>
+                    <p class="article-content">{{ object.description }}</p></br>
+                    <p class="article-content">In person or online: {{ object.category }}</p></br>
+                    {% if object.availability == True %}
+                        <p class="article-content">Module available at the moment: Yes</p>
+                    {% else %}
+                        <p class="article-content">Module available at the moment: No</p>
+                    {% endif %}
+        </fieldset>
+        <legend class="border-bottom mb-4">Delete module</legend>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Yes, Delete module</button>
+            <a class="btn btn-outline-secondary" href="{% url 'ModuleRegistrationSystem:module-detail' object.code %}">Cancel</a>
+        </div>
+    </form>
+{% else %}
+<div class="content-section">
+    <h1>Page only accessible to Admins!</h1>
+    <h2>Please return to homepage</h2>
+</div>
+{% endif %}
+{% endblock content %}

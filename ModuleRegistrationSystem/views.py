@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Module
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 
 def home(request):
@@ -25,6 +25,7 @@ class ModuleListView(ListView):
         template_name = 'ModuleRegistrationSystem/modules.html'
         context_object_name = 'modules'
         ordering = ['code']
+        paginate_by = 3
 
 class ModuleDetailView(DetailView):
         model = Module
@@ -36,4 +37,9 @@ class ModuleCreateView(CreateView):
 
 class ModuleUpdateView(UpdateView):
         model = Module
+        fields = ['name', 'code', 'credit', 'category', 'description', 'availability', 'coursesAllowedToRegister']
+
+class ModuleDeleteView(DeleteView):
+        model = Module
+        success_url = '/modules'
         

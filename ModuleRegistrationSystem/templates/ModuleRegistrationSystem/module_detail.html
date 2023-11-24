@@ -17,6 +17,10 @@
             {% else %}
                 <p class="article-content">Module available at the moment: No</p>
             {% endif %}
+            {% if user.is_superuser %}
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'ModuleRegistrationSystem:module-update' object.code %}">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'ModuleRegistrationSystem:module-delete' object.code %}">Delete</a>
+            {% endif %}
         </div>
     </article>
 

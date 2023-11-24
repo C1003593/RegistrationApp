@@ -31,8 +31,6 @@
                         <a class="nav-item nav-link" href="{% url 'ModuleRegistrationSystem:modules' %}">Modules</a>
                         {% if user.is_superuser %}
                             <a class="nav-item nav-link" href="{% url 'ModuleRegistrationSystem:module-create' %}">Create new module</a> 
-                        {% else %} 
-
                         {% endif %}
                     </div>
                     <!-- Navbar Right Side -->
