@@ -20,4 +20,4 @@ class studentAccountUpdateForm(forms.ModelForm):
     DOB = forms.DateField(help_text = 'Enter in the format: yyyy-mm-dd')
     class Meta:
         model = studentAccount
-        fields = ['DOB', 'Address', 'City', 'Country','image']
+        fields = ['DOB', 'Address', 'City', 'Country', 'Course', 'image']
