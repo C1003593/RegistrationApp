@@ -32,6 +32,9 @@ class ModuleListView(ListView):
 class ModuleDetailView(DetailView):
         model = Module
 
+class CourseDetailView(DetailView):
+        model = Course
+
 
 class ModuleCreateView(CreateView):
         model = Module

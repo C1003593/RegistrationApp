@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from .views import ModuleDetailView, ModuleListView, ModuleCreateView, ModuleUpdateView, ModuleDeleteView
+from .views import CourseDetailView
 
 app_name = 'ModuleRegistrationSystem'
 
@@ -15,6 +16,7 @@ urlpatterns = [
     path('module/<str:pk>', ModuleDetailView.as_view(), name='module-detail'),
     path('module/<str:pk>/update/', ModuleUpdateView.as_view(), name='module-update'),
     path('module/<str:pk>/delete/', ModuleDeleteView.as_view(), name='module-delete'),
+    path('course/<str:pk>', CourseDetailView.as_view(), name = 'course-detail'),
     
 
 ]

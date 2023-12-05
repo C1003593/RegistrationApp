@@ -14,7 +14,7 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name','last_name','email']
+        fields = ['email']
     
 class studentAccountUpdateForm(forms.ModelForm):
     DOB = forms.DateField(help_text = 'Enter in the format: yyyy-mm-dd')

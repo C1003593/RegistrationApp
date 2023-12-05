@@ -1,0 +1,18 @@
+{% extends "ModuleRegistrationSystem/base.html" %}
+{% block content %}
+<h1>Specific course </h1>
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2">Modules on course: 
+                </br>
+                <small class="text-muted">{{ object.duration }} long. </small> 
+            </div>
+            <h2><a class="article-title">{{ object }}</a></h2>
+            <p class="article-content">{{ object.description }}</p></br>
+        </div>
+    </article>
+{% endblock content %}
+</body>
+</html>
+

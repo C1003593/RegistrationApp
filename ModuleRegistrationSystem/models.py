@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.urls import reverse
 
 class Course(models.Model):
-    name = models.CharField(max_length = 20)
+    name = models.CharField(max_length = 20, primary_key= 'name')
     startDate = models.DateField(default = timezone.now)
     duration = models.CharField(max_length = 10 ,choices= [('1 year', '1 year'), ('2 years', '2 years'), ('3 years', '3 years')])
     description = models.TextField()
