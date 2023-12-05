@@ -1,6 +1,19 @@
 {% extends "ModuleRegistrationSystem/base.html" %}
 {% block content %}
     <h1>Welcome to Sheffield Hallam University</h1>
+    <div class="col-md-4">
+        <div class="content-section">
+            <h3>Courses</h3>
+            <p class='text-muted'>A list of courses offered by us.
+              <ul class="list-group">
+                {% for course in courses %}
+                <a class="mr-2" href="#"></a> {{ course.name }}
+                </br>
+                {% endfor %}
+              </ul>
+            </p>
+          </div>
+    </div>
 {% endblock content %}
 </body>
 </html>

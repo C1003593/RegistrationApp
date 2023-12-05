@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
-from .models import Module
+from .models import Module, Course
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 
 def home(request):
 
-        return render(request, 'ModuleRegistrationSystem/home.html', {'title': 'Welcome'})
+        course_list = {'courses': Course.objects.all(), 'title': 'Welcome'}
+        return render(request, 'ModuleRegistrationSystem/home.html', course_list)
 
 def about(request):
-        
+
         return render(request, 'ModuleRegistrationSystem/about.html', {'title': 'About us'})
 
 def contact(request):
@@ -19,6 +20,7 @@ def modules(request):
         
         module_list = {'modules': Module.objects.all(), 'title': 'List of modules'}
         return render(request, 'ModuleRegistrationSystem/modules.html', module_list)
+
 
 class ModuleListView(ListView):
         model = Module
