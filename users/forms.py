@@ -20,4 +20,8 @@ class studentAccountUpdateForm(forms.ModelForm):
     DOB = forms.DateField(help_text = 'Enter in the format: yyyy-mm-dd')
     class Meta:
         model = studentAccount
-        fields = ['DOB', 'Address', 'City', 'Country', 'Course', 'image']
+        if studentAccount.Course is not None:
+            fields = ['DOB', 'Address', 'City', 'Country', 'image']
+            
+        else:
+            fields = ['DOB', 'Address', 'City', 'Country', 'Course', 'image']

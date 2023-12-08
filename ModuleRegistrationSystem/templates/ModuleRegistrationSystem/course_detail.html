@@ -4,7 +4,10 @@
     <article class="media content-section">
         <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2">Modules on course: {{ object.module_set.all }}
+                <a class="mr-2">Modules on course: 
+                {% for module in object.module_set.all %}
+                <a class="mr-2" href="{% url 'ModuleRegistrationSystem:module-detail' module.code %}">{{ module.name }}.</a>
+                {% endfor %}
                 </br>
                 <small class="text-muted">{{ object.duration }} long. </small> 
             </div>
