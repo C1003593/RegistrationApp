@@ -12,9 +12,11 @@ def register(request):
             username = form.cleaned_data.get('username')
             messages.success(request, f'Your account has been created! Now you can login!')
             return redirect('login')
+        
         else:
             messages.warning(request, 'Unable to create account!')
-        return redirect('ModuleRegistrationSystem:home')
+            return redirect('ModuleRegistrationSystem:home')
+    
     else:
         form = UserRegisterForm()
         return render(request, 'users/register.html', {'form': form, 'title': 'Student Registration'})
@@ -35,3 +37,4 @@ def studentAccount(request):
         p_form = studentAccountUpdateForm(instance = request.user.studentaccount)
         context = {'u_form': u_form, 'p_form': p_form, 'title': 'Student Account'}
         return render(request, 'users/studentAccount.html', context)
+

@@ -11,7 +11,6 @@ class UserRegisterForm(UserCreationForm):
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
-
     class Meta:
         model = User
         fields = ['email']
@@ -20,8 +19,5 @@ class studentAccountUpdateForm(forms.ModelForm):
     DOB = forms.DateField(help_text = 'Enter in the format: yyyy-mm-dd')
     class Meta:
         model = studentAccount
-        if studentAccount.Course is not None:
-            fields = ['DOB', 'Address', 'City', 'Country', 'image']
-            
-        else:
-            fields = ['DOB', 'Address', 'City', 'Country', 'Course', 'image']
+        fields = ['DOB', 'Address', 'City', 'Country', 'Course', 'image']
+        
