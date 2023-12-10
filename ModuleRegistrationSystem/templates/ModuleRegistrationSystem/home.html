@@ -7,9 +7,11 @@
             <p class='text-muted'>A list of courses offered by us.
               <ul class="list-group">
                 {% for course in courses %} 
-                  <a class href="{% url 'ModuleRegistrationSystem:course-detail' course.name %}">
-                  {{ course.name }}</a> 
-                  </br>
+                  <div class="article-metadata">
+                    <a class href="{% url 'ModuleRegistrationSystem:course-detail' course.name %}">
+                    {{ course.name }}</a> 
+                    </br>
+                  </div>
                 {% endfor %}
               </ul>
             </p>

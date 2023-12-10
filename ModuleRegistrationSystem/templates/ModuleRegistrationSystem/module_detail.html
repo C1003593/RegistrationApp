@@ -17,6 +17,16 @@
             {% else %}
                 <p class="article-content">Module available at the moment: No</p>
             {% endif %}
+            <div class="article-metadata">
+            </div>
+            <a class="mr-2">Students registered to module: </a>
+            {% for registration in module.moduleregistrations.all %}
+                <div>
+                    <a class="mr-2" >{{ registration.student }}</a>
+                    <img class="rounded-circle article-img" src="{{ registration.student.studentaccount.image.url }}"/>
+                    <a class="mr-2"></a>
+                </div>
+            {% endfor %}
             {% if user.is_superuser %}
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'ModuleRegistrationSystem:module-update' object.code %}">Update</a>
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'ModuleRegistrationSystem:module-delete' object.code %}">Delete</a>
