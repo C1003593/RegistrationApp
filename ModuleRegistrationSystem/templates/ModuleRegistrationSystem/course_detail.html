@@ -1,6 +1,6 @@
 {% extends "ModuleRegistrationSystem/base.html" %}
 {% block content %}
-<h1>Specific course </h1>
+<h1> Information about {{ object }} </h1>
     <article class="media content-section">
         <div class="media-body">
             <div class="article-metadata">
@@ -11,7 +11,7 @@
                 </br>
                 <small class="text-muted">{{ object.duration }} long. </small> 
             </div>
-            <h2><a class="article-title">{{ object }}</a></h2>
+        </br>
             <p class="article-content">{{ object.description }}</p></br>
         </div>
     </article>
