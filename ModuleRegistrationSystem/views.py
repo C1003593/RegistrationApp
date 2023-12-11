@@ -1,9 +1,13 @@
 from typing import Any
 from django.db.models.query import QuerySet
+from django.forms.models import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Module, Course, Registration
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
+from django.contrib.messages.views import SuccessMessageMixin
+
 
 def home(request):
 
@@ -66,4 +70,19 @@ class ModuleUpdateView(UpdateView):
 class ModuleDeleteView(DeleteView):
         model = Module
         success_url = '/modules'
+
+class ModuleRegistration(CreateView):
+        model = Registration
+        fields = ['module']
+
+        def form_valid(self, form):
+                form.instance.student = self.request.user
+                return super().form_valid(form)
+
+class ModuleDeregistration(SuccessMessageMixin, DeleteView):
+        model = Registration
+        success_url = '/' 
+        success_message = "You have successfully deregistered from the module."
+
+
         

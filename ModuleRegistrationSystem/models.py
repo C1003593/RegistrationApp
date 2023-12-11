@@ -31,6 +31,14 @@ class Registration(models.Model):
     module = models.ForeignKey(Module, null = True, related_name= 'moduleregistrations', on_delete = models.CASCADE)
     dateOfRegistration = models.DateTimeField(default = timezone.now)
 
+    class Meta:
+        unique_together = ('student', 'module')
+        
     def __str__(self):
         return f'{self.student} is registered to {self.module}'
+    
+    def get_absolute_url(self):
+        return reverse('ModuleRegistrationSystem:home')
+    
+
 
