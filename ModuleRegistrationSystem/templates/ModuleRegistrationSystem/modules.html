@@ -12,7 +12,17 @@
             </div>
             <h2><a class="article-title" href="{% url 'ModuleRegistrationSystem:module-detail' module.code %}">{{ module }}</a></h2>
             <p class="article-content">{{ module.description }}</p>
-        </div>
+            <div class="article-metadata"></div>
+            {% for registration in module.moduleregistrations.all %}
+                    
+                {% if user == registration.student %}
+                    <a class="mr-2">You are already registered for this module, would you like to deregister?</a>
+                {% else %}
+                {% endif %}
+                
+                {% empty %}
+                    <a class="mr-2">You are not registered for this module, would you like to register?</a>
+            {% endfor %}
     </article>
 {% endfor %}
 

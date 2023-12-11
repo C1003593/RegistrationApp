@@ -2,13 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, studentAccountUpdateForm
 from django.contrib.auth.decorators import login_required
+from .models import studentAccount
 
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            user = form.save()  
+
+            student = studentAccount.objects.get(user=user)
+            student.Course = form.cleaned_data.get('course')
+            student.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Your account has been created! Now you can login!')
             return redirect('login')
@@ -22,7 +27,7 @@ def register(request):
         return render(request, 'users/register.html', {'form': form, 'title': 'Student Registration'})
 
 @login_required
-def studentAccount(request):
+def student_account(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance = request.user)
         p_form = studentAccountUpdateForm(request.POST, request.FILES, instance = request.user.studentaccount)

@@ -26,7 +26,13 @@
                     <img class="rounded-circle article-img" src="{{ registration.student.studentaccount.image.url }}"/>
                     <a class="mr-2"></a>
                 </div>
+                {% empty %}
+                    <a class="mr-2">No students are registered to this module.</a>
             {% endfor %}
+            </br>
+            <div class="article-metadata">
+            </div>
+        </br>
             {% if user.is_superuser %}
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'ModuleRegistrationSystem:module-update' object.code %}">Update</a>
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'ModuleRegistrationSystem:module-delete' object.code %}">Delete</a>
