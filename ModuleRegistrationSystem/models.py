@@ -19,7 +19,7 @@ class Module(models.Model):
     category = models.CharField(max_length= 20, choices= [('In-person', 'In person'), ('Online', 'Online')])
     description = models.TextField()
     availability = models.BooleanField(default=True)
-    coursesAllowedToRegister = models.ManyToManyField(Course)
+    courses_Allowed_To_Register = models.ManyToManyField(Course)
 
     def __str__(self):
         return f'{self.name}'

@@ -8,7 +8,7 @@
             <article class="media content-section">
                 <div class="media-body">
                     <div class="article-metadata">
-                        <a class="mr-2">Courses allowed to register: {% for coursesAllowedToRegister in object.coursesAllowedToRegister.all %}{{ coursesAllowedToRegister }}.
+                        <a class="mr-2">Courses allowed to register: {% for courses_Allowed_To_Register in object.courses_Allowed_To_Register.all %}{{ courses_Allowed_To_Register }}.
                             {% endfor %}</a>
                         </br>
                         <small class="text-muted">{{ object.credit }} credits offered. Module Code: {{ object.code }}</small> 

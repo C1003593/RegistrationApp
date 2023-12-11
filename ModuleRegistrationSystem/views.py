@@ -7,6 +7,8 @@ from .models import Module, Course, Registration
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse
+
 
 
 def home(request):
@@ -50,6 +52,7 @@ class RegistrationView(ListView):
         def get_queryset(self):
                 user=get_object_or_404(User, username=self.kwargs.get('username'))
                 return Registration.objects.filter(student=user).order_by('dateOfRegistration')
+        
 
 
 
@@ -61,11 +64,11 @@ class CourseDetailView(DetailView):
 
 class ModuleCreateView(CreateView):
         model = Module
-        fields = ['name', 'code', 'credit', 'category', 'description', 'availability', 'coursesAllowedToRegister']
+        fields = ['name', 'code', 'credit', 'category', 'description', 'availability', 'courses_Allowed_To_Register']
 
 class ModuleUpdateView(UpdateView):
         model = Module
-        fields = ['name', 'code', 'credit', 'category', 'description', 'availability', 'coursesAllowedToRegister']
+        fields = ['name', 'code', 'credit', 'category', 'description', 'availability', 'courses_Allowed_To_Register']
 
 class ModuleDeleteView(DeleteView):
         model = Module
@@ -74,15 +77,16 @@ class ModuleDeleteView(DeleteView):
 class ModuleRegistration(CreateView):
         model = Registration
         fields = ['module']
-
         def form_valid(self, form):
                 form.instance.student = self.request.user
                 return super().form_valid(form)
-
+        
 class ModuleDeregistration(SuccessMessageMixin, DeleteView):
         model = Registration
-        success_url = '/' 
         success_message = "You have successfully deregistered from the module."
+
+        def get_success_url(self):
+                return reverse('ModuleRegistrationSystem:registrations', kwargs={'username': self.request.user.username})
 
 
         
