@@ -75,17 +75,9 @@ class ModuleUpdateView(UpdateView):
 class ModuleDeleteView(DeleteView):
         model = Module
         success_url = '/modules'
-"""
-class ModuleRegistration(CreateView):
-        model = Registration
-        fields = ['module']
-        def form_valid(self, form):
-                form.instance.student = self.request.user
-                return super().form_valid(form)
-        success_url = '/modules'
-"""
 
-def ModuleRegi(request, pk):
+
+def ModuleRegistration(request, pk):
         module = get_object_or_404(Module, code=pk)
         if request.method == "POST":
                 form = ModuleReg(request.POST)
@@ -95,7 +87,7 @@ def ModuleRegi(request, pk):
                         reg.student = request.user
 
                         reg.save()
-                        messages.success(request, f"You have successfully registered from the module.")
+                        messages.success(request, f"You have successfully registered for the module.")
                         return redirect('ModuleRegistrationSystem:modules')
                 else:
                         messages.warning(request, f"You are already registered for this module.")
@@ -104,7 +96,6 @@ def ModuleRegi(request, pk):
                 form = ModuleReg()
         return redirect('ModuleRegistrationSystem:modules')
 
-        
 class ModuleDeregistration(SuccessMessageMixin, DeleteView):
         model = Registration
         success_message = "You have successfully deregistered from the module."
