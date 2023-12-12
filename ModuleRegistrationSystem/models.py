@@ -29,7 +29,7 @@ class Module(models.Model):
 class Registration(models.Model):
     student = models.ForeignKey(User,null = True, related_name= 'studentregistrations', on_delete = models.CASCADE)
     module = models.ForeignKey(Module, null = True, related_name= 'moduleregistrations', on_delete = models.CASCADE)
-    dateOfRegistration = models.DateTimeField(default = timezone.now)
+    dateOfRegistration = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ('student', 'module')

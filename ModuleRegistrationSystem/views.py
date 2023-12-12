@@ -8,6 +8,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
+from .forms import ModuleReg
+from django.contrib import messages
 
 
 
@@ -73,13 +75,35 @@ class ModuleUpdateView(UpdateView):
 class ModuleDeleteView(DeleteView):
         model = Module
         success_url = '/modules'
-
+"""
 class ModuleRegistration(CreateView):
         model = Registration
         fields = ['module']
         def form_valid(self, form):
                 form.instance.student = self.request.user
                 return super().form_valid(form)
+        success_url = '/modules'
+"""
+
+def ModuleRegi(request, pk):
+        module = get_object_or_404(Module, code=pk)
+        if request.method == "POST":
+                form = ModuleReg(request.POST)
+                if form.is_valid():
+                        reg = form.save(commit=False)
+                        reg.module = module
+                        reg.student = request.user
+
+                        reg.save()
+                        messages.success(request, f"You have successfully registered from the module.")
+                        return redirect('ModuleRegistrationSystem:modules')
+                else:
+                        messages.warning(request, f"You are already registered for this module.")
+                        print(f"Form Errors: {form.errors}")
+        else:
+                form = ModuleReg()
+        return redirect('ModuleRegistrationSystem:modules')
+
         
 class ModuleDeregistration(SuccessMessageMixin, DeleteView):
         model = Registration
