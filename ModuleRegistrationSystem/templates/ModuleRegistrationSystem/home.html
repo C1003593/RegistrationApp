@@ -1,21 +1,57 @@
 {% extends "ModuleRegistrationSystem/base.html" %}
 {% block content %}
     <h1>Welcome to Sheffield Hallam University</h1>
+    <div class="article-metadata">
+      <h2>Our pages</h2>
+        <h3><a class href="{% url 'ModuleRegistrationSystem:modules' %}">Modules</a></h3>
+        {% if user.is_authenticated %}
+        {% else %}
+        <h3><a class href="{% url 'register' %}">Register</a></h3>
+        {% endif %}
+        <h3><a class href="{% url 'ModuleRegistrationSystem:about' %}">About us</a></h3>
+        <h3><a class href="{% url 'ModuleRegistrationSystem:contact' %}">Contact</a></h3>
+        <h3><a class href="{% url 'ModuleRegistrationSystem:teachers' %}">List of teachers</a></h3>
+
+
+    </div>
+
+      <div class="article-metadata">
+        <h2>Lorem Ipsum</h2>
+        Eos cu dicat nulla vocent. At mei invidunt quaestio, malis civibus ei ius. Quot fastidii nam an. Argumentum disputando mei ea.
+
+        Pri mollis fierent theophrastus an. His eros vituperata quaerendum an. Cum zril propriae dissentiet eu, amet clita ei nam. His dictas patrioque contentiones te, ad animal vituperatoribus vis. Sit ut dolor cetero pericula, quo imperdiet ullamcorper ea. Per etiam choro no, an qui vivendo propriae fabellas. Paulo option duo an, amet liber id qui.
+
+        Mel ad vide homero petentium. Wisi probo verear has ne, no tantas exerci dolore eum. Per honestatis necessitatibus id, qui noluisse probatus ad, an pro quas velit causae. Dicam postulant ea sit. Quas lobortis volutpat et cum, virtute torquatos cu mel, iudico euismod tibique id nam. Eam cu natum libris, et veri mentitum qui.
+
+        Rebum laboramus no mei, his illum vivendo minimum ad. Ea elitr denique omittantur per, dicta dicant tincidunt nam at. Ei pro cibo inermis. Assentior abhorreant no nam. Nemore rationibus eos ad.
+
+        Ad sed quem fastidii officiis, id mea sumo feugait legendos, in odio paulo eirmod sed. Lucilius delicatissimi id vel, movet indoctum in vix. Eam ullum populo insolens ut. Has an populo probatus dignissim, an velit mediocritatem eam.
+
+      </div>
+      
+      <div class="article-metadata">
+        <h2>Lorem Ipsum</h2>
+        Laoreet accusam ut sed, vis mundi quaestio definitionem ea, qui audire labitur numquam ne. Pri ex graecis minimum, ei vide nonumes qui, eum amet aeque ut. Te mei illum fastidii, epicuri imperdiet quo te, decore vidisse conceptam an ius. Ex alia dicat reprehendunt vel, in alii dicam quo, mea no detracto appetere dissentiunt. Soluta vituperatoribus et pri, id ius adhuc scripta, no eius simul legere vis. An sed dicam blandit suscipiantur, ne diceret appareat indoctum vix.
+
+        Enim recteque eu sea. Pro equidem inimicus neglegentur ne, equidem oporteat laboramus ea his, agam deserunt intellegebat ea duo. Melius cetero veritus sed cu. Ius stet eros vivendum ei, augue inciderint voluptatibus in pro. Pro ad veniam detracto, ad qui amet imperdiet repudiare. Mea accumsan scaevola accusata an. Eleifend dignissim ut per, te idque graecis maiestatis cum.
+
+        Atqui praesent quaerendum mea ex, eum primis consulatu ne, paulo dolore maluisset ex vis. Omnium fabulas pri ex. Id quo omnis fuisset electram, ad eam dico elit. Saepe fabellas similique duo ne, quodsi nominati ei pri, no brute bonorum epicurei nam. Sea purto latine te, persecuti democritum et pro.
+
+        Duo quidam cetero ex, ut alia expetendis vel. Mel falli omittam assentior in, propriae vulputate eum an, eam ex iisque verterem menandri. Mei ut debet propriae imperdiet, homero possim consetetur sea id, odio argumentum te nam. Paulo fuisset inciderint vix ei, tempor putent te vix.
+
+      </div>
+ 
     <div class="col-md-4">
-        <div class="content-section">
-            <h3>Courses</h3>
+            <h2>Courses</h2>
             <p class='text-muted'>A list of courses offered by us.
-              <ul class="list-group">
                 {% for course in courses %} 
                   <div class="article-metadata">
-                    <a class href="{% url 'ModuleRegistrationSystem:course-detail' course.name %}">
-                    {{ course.name }}</a> 
+                    <h3><a class href="{% url 'ModuleRegistrationSystem:course-detail' course.name %}">
+                    {{ course.name }}</a></h3>
                     </br>
                   </div>
                 {% endfor %}
-              </ul>
             </p>
-        </div>
     </div>
 {% endblock content %}
 </body>

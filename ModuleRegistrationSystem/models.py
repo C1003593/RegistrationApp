@@ -40,5 +40,14 @@ class Registration(models.Model):
     def get_absolute_url(self):
         return reverse('ModuleRegistrationSystem:home')
     
+class Teacher(models.Model):
+    Name = models.CharField(max_length = 15 ,null = False)
+    Email = models.EmailField(null = False)
+    Picture = models.ImageField(default = 'default.png', upload_to= 'profile_pics')
+    Module = models.ForeignKey(Module, null = True, on_delete = models.DO_NOTHING)
+
+    def __str__(self):
+        return f'{self.Name} | {self.Module}'
+    
 
 

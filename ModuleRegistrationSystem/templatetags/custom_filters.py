@@ -1,5 +1,7 @@
 from django import template
-from ModuleRegistrationSystem.models import Registration
+from ModuleRegistrationSystem.models import Registration, Module
+from django.contrib.auth.models import User
+from users.models import studentAccount
 
 register = template.Library()
 

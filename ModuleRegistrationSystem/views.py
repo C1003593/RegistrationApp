@@ -4,7 +4,7 @@ from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Module, Course, Registration
+from .models import Module, Course, Registration, Teacher
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
@@ -36,6 +36,19 @@ def registrations(request):
         
         registrations_list = {'registrations': Registration.objects.all(), 'title': 'My Registrations'}
         return render(request, 'ModuleRegistrationSystem/my_registrations.html', registrations_list)
+
+def teachers(request):
+
+        teacher_list = {'teachers': Teacher.objects.all(), 'title': 'List of teachers'}
+        return render(request, 'ModuleRegistrationSystem/teachers.html', teacher_list)
+
+class TeacherListView(ListView):
+        model = Teacher
+        template_name = 'ModuleRegistrationSystem/teachers.html'
+        context_object_name = 'teachers'
+        ordering = ['Name']
+        paginate_by = 3
+
 
                 
 
@@ -76,7 +89,6 @@ class ModuleUpdateView(UpdateView):
 class ModuleDeleteView(DeleteView):
         model = Module
         success_url = '/modules'
-
 
 def ModuleRegistration(request, pk):
         module = get_object_or_404(Module, code=pk)
