@@ -4,6 +4,7 @@ from .views import ModuleDetailView, ModuleListView, ModuleCreateView, ModuleUpd
 from .views import CourseDetailView
 from .views import RegistrationView, ModuleRegistration, ModuleDeregistration
 from .views import TeacherListView
+from .views import ContactFormView
 
 app_name = 'ModuleRegistrationSystem'
 
@@ -11,7 +12,7 @@ urlpatterns = [
 
     path('', views.home, name = 'home'),
     path('about', views.about, name='about'),
-    path('contact', views.contact, name='contact'),
+    path('contact', ContactFormView.as_view(), name='contact'),
     path('teachers', TeacherListView.as_view(), name='teachers'),
     
     path('modules', ModuleListView.as_view(), name='modules'),

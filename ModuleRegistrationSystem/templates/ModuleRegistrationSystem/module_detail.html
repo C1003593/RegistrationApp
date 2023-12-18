@@ -38,30 +38,33 @@
 
         {% if user.is_authenticated %}
 
-                {% if user|if_registered:module %}
+                {% if user.studentaccount.Course in module.courses_Allowed_To_Register.all %}
 
-                    <a class="mr-2">You are already registered for this module, view registrations here: </a>
-                    <a class="ml-2" href="{% url 'ModuleRegistrationSystem:registrations' user.username %}">my registrations</a>
+                    {% if user|if_registered:module %}
 
-                {% else %}
-                
-                    {% if module.availability == True %}
-                        <form method="POST" action="{% url 'ModuleRegistrationSystem:module-registration' module.code %}">
-                            {% csrf_token %}
-                            {{ form | crispy }}
-                            <button class="btn btn-success" type="submit">Register Now</button>
-                        </form>
+                        <a class="mr-2">You are already registered for this module, view registrations here: </a>
+                        <a class="ml-2" href="{% url 'ModuleRegistrationSystem:registrations' user.username %}">my registrations</a>
 
-                    {% elif module.availability == False %}
-                        <a class="mr-2">This module is not currently available.</a>
+                    {% else %}
+                    
+                        {% if module.availability == True %}
+                            <form method="POST" action="{% url 'ModuleRegistrationSystem:module-registration' module.code %}">
+                                {% csrf_token %}
+                                {{ form | crispy }}
+                                <button class="btn btn-success" type="submit">Register Now</button>
+                            </form>
+
+                        {% elif module.availability == False %}
+                            <a class="mr-2">This module is not currently available.</a>
+                        {% endif %}
                     {% endif %}
+                {% else %}
+                    <a class="mr-2">Your course is not eligible to enrol to this module.</a>
                 {% endif %}
-
-        {% else %}
-            <a class="mr-2">You are not logged in, you must login to register for a module.</a>
-            <a class="ml-2" href="{% url 'login' %}">Login</a>
-        {% endif %}
-                    </br>
+            {% else %}
+                <a class="mr-2">You are not logged in, you must login to register for a module.</a>
+                <a class="ml-2" href="{% url 'login' %}">Login</a>
+            {% endif %}
             {% if user.is_superuser %}
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'ModuleRegistrationSystem:module-update' object.code %}">Update</a>
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'ModuleRegistrationSystem:module-delete' object.code %}">Delete</a>

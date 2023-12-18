@@ -9,8 +9,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse
-from .forms import ModuleReg
+from .forms import ModuleReg, ContactForm
 from django.contrib import messages
+from django.views.generic.edit import FormView
 
 
 
@@ -23,9 +24,27 @@ def about(request):
 
         return render(request, 'ModuleRegistrationSystem/about.html', {'title': 'About us'})
 
-def contact(request):
+class ContactFormView(FormView):
+        form_class = ContactForm
+        template_name = 'ModuleRegistrationSystem/contact.html'
+
+        def get_context_data(self, **kwargs: Any):
+                context = super(ContactFormView, self).get_context_data(**kwargs)
+
+                context.update({'title': 'Contact Us'})
+                return context
         
-        return render(request, 'ModuleRegistrationSystem/contact.html', {'title': 'Contact us'})
+        def form_valid(self, form):
+                form.send_mail()
+                messages.success(self.request, 'Successfully sent the enquiry')
+                return super().form_valid(form)
+        
+        def form_invalid(self, form):
+                messages.warning(self.request, 'Unable to send the enquiry')
+                return super().form_invalid(form)
+        
+        def get_success_url(self):
+                return self.request.path
 
 def modules(request):
         
@@ -49,8 +68,6 @@ class TeacherListView(ListView):
         ordering = ['Name']
         paginate_by = 3
 
-
-                
 
 class ModuleListView(ListView):
         model = Module
