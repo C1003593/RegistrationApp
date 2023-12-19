@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms',
     'crispy_bootstrap4',
+    'rest_framework',
+    'api.apps.ApiConfig',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +139,10 @@ LOGIN_REDIRECT_URL = 'ModuleRegistrationSystem:home'
 LOGIN_URL = 'login'
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = BASE_DIR / 'emails'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTIFICATION_CLASSES' : ['rest_framework.authentication.TokenAuthentification',
+    
+    ],
+
+}
