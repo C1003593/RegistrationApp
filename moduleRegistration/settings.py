@@ -135,10 +135,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_ALLOWED_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = 'ModuleRegistrationSystem:home' 
+LOGIN_REDIRECT_URL = 'ModuleRegistrationSystem:home'
 LOGIN_URL = 'login'
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = BASE_DIR / 'emails'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'C1003593@my.shu.ac.uk'
+EMAIL_HOST_PASSWORD = 'Allallex123'
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTIFICATION_CLASSES' : ['rest_framework.authentication.TokenAuthentification',

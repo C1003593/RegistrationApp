@@ -2,7 +2,18 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, studentAccountUpdateForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
 from .models import studentAccount
+
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'users/password_reset.html'
+    email_template_name = 'users/password_reset_email.html'
+    subject_template_name = 'users/password_reset_subject'
+    success_message = "We have emailed you instructions to reset your password."
+    success_url = '/'
+    
+    
 
 def register(request):
     if request.method == 'POST':
@@ -25,7 +36,7 @@ def register(request):
     else:
         form = UserRegisterForm()
         return render(request, 'users/register.html', {'form': form, 'title': 'Student Registration'})
-
+    
 @login_required
 def student_account(request):
     if request.method == 'POST':

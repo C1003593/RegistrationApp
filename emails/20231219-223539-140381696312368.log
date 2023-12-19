@@ -1,0 +1,18 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Django - Registration/Login App Password Reset
+From: webmaster@localhost
+To: C1003593@my.shu.ac.uk
+Date: Tue, 19 Dec 2023 22:35:39 -0000
+Message-ID: 
+ <170302533959.23475.10386479749643443488@lab000001.internal.cloudapp.net>
+
+
+  To reset your password for user: C1003593@my.shu.ac.uk Django Registration/Login App Account,
+  click the link below:
+
+  http://127.0.0.1:8000/password-reset-confirm/MQ/bzh83f-ba3e1dcd9f69d15559ad180a1814c0e3/
+
+
+-------------------------------------------------------------------------------
