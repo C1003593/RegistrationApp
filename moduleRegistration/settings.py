@@ -27,10 +27,11 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = WEBSITE_HOSTNAME is None
 
-ALLOWED_HOSTS = [] if DEBUG else [WEBSITE_HOSTNAME]
+ALLOWED_HOSTS = [] if DEBUG else [WEBSITE_HOSTNAME, f"{WEBSITE_HOSTNAME}.azurewebsites.net"]
 
 if not DEBUG:
-    CSRF_TRUSTED_ORIGINS = ['https://{WEBSITE_HOSTNAME}']
+    CSRF_TRUSTED_ORIGINS = [f'https://{WEBSITE_HOSTNAME}', f'https://{WEBSITE_HOSTNAME}.azurewebsites.net']
+
 
 
 # Application definition
